@@ -1,13 +1,23 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"net/http"
+	"strconv"
 )
 
+var port int
+var input string
+
 func main() {
-	log.Print("server listening on port 8080...")
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	flag.IntVar(&port, "port", 8080, "port to listen to...")
+	flag.Parse()
+
+	input = strconv.Itoa(port)
+
+	log.Print("server listening on port " + input + ".")
+	if err := http.ListenAndServe(":"+input, nil); err != nil {
 		log.Fatal(err)
 	}
 }
