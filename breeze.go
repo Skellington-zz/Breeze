@@ -7,14 +7,13 @@ import (
 	"strconv"
 )
 
-var port int
-var input string
-
 func main() {
+	var port int
+
 	flag.IntVar(&port, "port", 8080, "port to listen to...")
 	flag.Parse()
 
-	input = strconv.Itoa(port)
+	input := strconv.Itoa(port)
 
 	log.Print("server listening on port " + input + ".")
 	if err := http.ListenAndServe(":"+input, nil); err != nil {
